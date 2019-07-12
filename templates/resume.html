@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}
+履歷表生成範例
+{% endblock %}
+
+
+{% block content %}
+<form method="POST" action='/result'>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="apiname">API 代號</label>
+            <input class="form-control" id="apiname" name='apiname' value="履歷表生成範例" readonly>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="userinput">請輸入 JSON</label>
+            <textarea class="form-control" rows='10' name='userinput好' id="userinput"></textarea>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value='提交'></input>
+</form>
+
+<br>
+<div class='form-group'>
+    <label>JSON 範例</label>
+    <textarea class='col-md-12' rows='15' disabled>
+        {
+            "中文姓名": "string  // 可為任意文字或數值資料。",
+            "英文姓名": "string  // 可為任意文字或數值資料。",
+            "身分字號": "string  // 可為任意文字或數值資料。",
+            "到職日期": "string  // 可為任意文字或數值資料。",
+            "電郵信箱": "string  // 可為任意文字或數值資料。",
+            "第二電郵信箱": "string  // 可為任意文字或數值資料。",
+            "戶籍地址": "string  // 可為任意文字或數值資料。",
+            "出生年月日": "string  // 可為任意文字或數值資料。",
+            "性別": "string  // 可為任意文字或數值資料。",
+            "通訊地址": "string  // 可為任意文字或數值資料。",
+            "血型": "string  // 可為任意文字或數值資料。",
+            "市話": "string  // 可為任意文字或數值資料。",
+            "婚姻狀況": "string  // 可為任意文字或數值資料。",
+            "手機": "string  // 可為任意文字或數值資料。",
+            "緊急聯絡人1": "string  // 可為任意文字或數值資料。",
+            "緊急聯絡人1關係": "string  // 可為任意文字或數值資料。",
+            "緊急聯絡人1電話": "string  // 可為任意文字或數值資料。",
+            "緊急聯絡人2": "string  // 可為任意文字或數值資料。",
+            "緊急聯絡人2關係": "string  // 可為任意文字或數值資料。",
+            "緊急聯絡人2電話": "string  // 可為任意文字或數值資料。",
+            "學校名稱1": "string  // 可為任意文字或數值資料。",
+            "系所1": "string  // 可為任意文字或數值資料。",
+            "起始時間1": "string  // 可為任意文字或數值資料。",
+            "結束時間1": "string  // 可為任意文字或數值資料。",
+            "學校名稱2": "string  // 可為任意文字或數值資料。",
+            "起始時間2": "string  // 可為任意文字或數值資料。",
+            "結束時間2": "string  // 可為任意文字或數值資料。",
+            "專長or證照1": "string  // 可為任意文字或數值資料。",
+            "專長or證照2": "string  // 可為任意文字或數值資料。",
+            "專長or證照3": "string  // 可為任意文字或數值資料。",
+            "家人稱謂1": "string  // 可為任意文字或數值資料。",
+            "家人姓名1": "string  // 可為任意文字或數值資料。",
+            "服務機關1": "string  // 可為任意文字或數值資料。",
+            "家人年齡1": "string  // 可為任意文字或數值資料。",
+            "家人稱謂2": "string  // 可為任意文字或數值資料。",
+            "家人姓名2": "string  // 可為任意文字或數值資料。",
+            "服務機關2": "string  // 可為任意文字或數值資料。",
+            "家人年齡2": "string  // 可為任意文字或數值資料。",
+            "家人稱謂3": "string  // 可為任意文字或數值資料。",
+            "家人姓名3": "string  // 可為任意文字或數值資料。",
+            "服務機關3": "string  // 可為任意文字或數值資料。",
+            "家人年齡3": "string  // 可為任意文字或數值資料。",
+            "家人稱謂4": "string  // 可為任意文字或數值資料。",
+            "家人姓名4": "string  // 可為任意文字或數值資料。",
+            "服務機關4": "string  // 可為任意文字或數值資料。",
+            "家人年齡4": "string  // 可為任意文字或數值資料。"
+        }
+    </textarea>
+</div>
+{% endblock %}

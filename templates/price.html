@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}
+報價單生成範例
+{% endblock %}
+
+
+{% block content %}
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="apiname">API 代號</label>
+            <input class="form-control" id="apiname" name='apiname' value="報價單生成範例" readonly>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="date">日期</label>
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+    </div>
+    <!--公司資訊-->
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="date">廠商</label>
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="date">負責人</label>
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="date">住址</label>
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="date">統一編號</label>
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="date">電話</label>
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="date">傳真</label>
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="date">電子信箱</label>
+            <input type="email" name='date' class="form-control" id="date">
+        </div>
+    </div>
+    <!--項目資訊-->
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="apiname">專案名稱</label>
+            <input class="form-control" id="apiname" name='apiname'>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="date">編號</label>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="date">產品名稱</label>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="date">型號規格</label>
+        </div>
+        <div class="form-group col-md-1">
+            <label for="date">單位</label>
+        </div>
+        <div class="form-group col-md-1">
+            <label for="date">數量</label>
+        </div>
+        <div class="form-group col-md-1">
+            <label for="date">單價</label>
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="date">小計</label>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="date">備註</label>
+        </div>
+    </div>
+    <!--TODO 透過　ｆｏｒ　迴圈實作剩下的產品目錄-->
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <input type="" name='date' class="form-control" id="date" value='1' disabled>
+        </div>
+        <div class="form-group col-md-2">
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+        <div class="form-group col-md-2">
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+        <div class="form-group col-md-1">
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+        <div class="form-group col-md-1">
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+        <div class="form-group col-md-1">
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+
+        <div class="form-group col-md-2">
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+        <div class="form-group col-md-2">
+            <input type="" name='date' class="form-control" id="date">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+{% endblock %}
