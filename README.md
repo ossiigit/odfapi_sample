@@ -8,6 +8,11 @@
 ### 如何部屬?
 ```
 pip install -r requirements.txt
+
+或是
+
+conda install --yes --file requirements.txt
+
 ```
 
 ### 如何執行?
