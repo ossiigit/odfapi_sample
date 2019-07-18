@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+關於 ODF API
+{% endblock %}
+
+
+{% block content %}
+
+<img class="img-fluid" src='static/img/flow-chart.jpg'>
+<br>
+<br>
+<br>
+<div class='row container'>
+        <div class="col bg-info text-white rounded m-1">步驟一、利用 ODF 文件 API 的用戶端工具快速設計新的 ODF 報表範本。</div>
+        <div class="col bg-dark text-white rounded m-1">步驟二、把新的 ODF 報表範本傳上伺服器端並產生 API 連結。</div>
+        <div class="col bg-info text-white rounded m-1">步驟三、把原本報表的陣列資料轉成 JSON 並 POST 到上述的 API 連結。</div>
+        <div class="col bg-dark text-white rounded m-1">步驟四、使用者點選網頁連結，下載 ODF 報表。</div>
+</div>
+<br>
+<div class="text-right "><a href='https://www.ndc.gov.tw/cp.aspx?n=260AB6C70F5AF292&s=04C4AB150E9149D6'>Refered: National Development Council</a></div>
+{% endblock %}

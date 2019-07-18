@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 
 {% block title %}
-歡迎來到國發會 API 範例網
+歡迎來到 ODF API 範例網
 {% endblock %}
 
 
 {% block content %}
-<div class='row'>
+<div class='row justify-content-center'>
     <div class="col-sm-4">
         <div class="card" style="width: 18rem;height: 15rem">
             <div class="card-body">
                 <h5 class="card-title">仲介履歷</h5>
                 <h6 class="card-subtitle mb-1 text-muted">基礎應用 1</h6>
+                <br>
                 <p class="card-text">試想讓應徵者透過使用你們公司的系統填寫資料，就能自動生成美美的履歷提供給合作公司，是不是很美好呢?</p>
                 <a href="/resume" class="card-link">試試看!</a>
             </div>
@@ -20,20 +21,14 @@
     <div class="col-sm-4">
         <div class="card" style="width: 18rem;height: 15rem;">
             <div class="card-body">
-                <h5 class="card-title">報價單 (台電帳單生成)</h5>
+                <h5 class="card-title">報價單</h5>
                 <h6 class="card-subtitle mb-1 text-muted">基礎應用 2</h6>
-                <p class="card-text">在外談生意想要快速生成報價單給對方 ? 手邊沒有電腦能編輯 ? 來試試看國發會雲端 API 吧!讓你速度生成報價單，跑業務沒煩惱!</p>
+                <br>
+                <p class="card-text">在外談生意想要快速生成報價單給對方 ? 手邊沒有電腦能編輯 ? 來試試看 ODF 雲端 API 吧!讓你速度生成報價單，跑業務沒煩惱!</p>
                 <a href="/price" class=" card-link">試試看!</a>
             </div>
         </div>
     </div>
-    <div class="card" style="width: 18rem;height: 15rem;">
-        <div class="card-body">
-            <h5 class="card-title">薪資表</h5>
-            <h6 class="card-subtitle mb-1 text-muted">基礎應用 3</h6>
-            <p class="card-text">你是 HR 嗎?看到想保留的應試者，手邊沒有電腦能產生薪資表?來試試看國發會雲端 API 吧!</p>
-            <a href="/salary" class="card-link">試試看!</a>
-        </div>
-    </div>
+    
 </div>
 {% endblock %}

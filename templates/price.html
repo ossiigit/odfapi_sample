@@ -6,7 +6,7 @@
 
 
 {% block content %}
-<form>
+<form method="POST" action='/result2'>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label for="apiname">API 代號</label>
@@ -14,47 +14,42 @@
         </div>
         <div class="form-group col-md-6">
             <label for="date">日期</label>
-            <input type="" name='date' class="form-control" id="date">
+            <input type="" name='日期' class="form-control" id='date'>
         </div>
     </div>
     <!--公司資訊-->
     <div class="form-row">
         <div class="form-group col-md-3">
             <label for="date">廠商</label>
-            <input type="" name='date' class="form-control" id="date">
+            <input type="" name='廠商' class="form-control" value='晟鑫科技'>
         </div>
         <div class="form-group col-md-3">
             <label for="date">負責人</label>
-            <input type="" name='date' class="form-control" id="date">
+            <input type="" name='負責人' class="form-control" value='先生先生'>
         </div>
         <div class="form-group col-md-3">
             <label for="date">住址</label>
-            <input type="" name='date' class="form-control" id="date">
+            <input type="" name='住址' class="form-control" value='地球的某個地方'>
         </div>
         <div class="form-group col-md-3">
             <label for="date">統一編號</label>
-            <input type="" name='date' class="form-control" id="date">
+            <input type="" name='統一編號' class="form-control" value='10101010'>
         </div>
         <div class="form-group col-md-3">
             <label for="date">電話</label>
-            <input type="" name='date' class="form-control" id="date">
+            <input type="" name='電話' class="form-control" value='02-xxxxxxx'>
         </div>
         <div class="form-group col-md-3">
             <label for="date">傳真</label>
-            <input type="" name='date' class="form-control" id="date">
+            <input type="" name='傳真' class="form-control" value='02-xxxxxxx'>
         </div>
         <div class="form-group col-md-3">
             <label for="date">電子信箱</label>
-            <input type="email" name='date' class="form-control" id="date">
+            <input type="email" name='電子信箱' class="form-control" value='ossii@mail.ossii.com.tw'>
         </div>
     </div>
     <!--項目資訊-->
-    <div class="form-row">
-        <div class="form-group col-md-3">
-            <label for="apiname">專案名稱</label>
-            <input class="form-control" id="apiname" name='apiname'>
-        </div>
-    </div>
+
     <div class="form-row">
         <div class="form-group col-md-1">
             <label for="date">編號</label>
@@ -71,45 +66,193 @@
         <div class="form-group col-md-1">
             <label for="date">數量</label>
         </div>
-        <div class="form-group col-md-1">
+        <div class="form-group col-md-2">
             <label for="date">單價</label>
         </div>
 
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-1">
             <label for="date">小計</label>
         </div>
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-1">
             <label for="date">備註</label>
         </div>
     </div>
-    <!--TODO 透過　ｆｏｒ　迴圈實作剩下的產品目錄-->
-    <div class="form-row">
-        <div class="form-group col-md-1">
-            <input type="" name='date' class="form-control" id="date" value='1' disabled>
+    <!--產品目錄-->
+    <div class="form-row" id='itemgroup1'>
+        <div class="form-group col-md-1" id='item1'>
+            <input type="" name='item-1-編號' class="form-control" value='1' readonly>
         </div>
         <div class="form-group col-md-2">
-            <input type="" name='date' class="form-control" id="date">
+            <select class='form-control' id="product" name="item-1-產品名稱">
+                <option value="OxOffice">OxOffice</option>
+                <option value="OxOffice 教育訓練">OxOffice 教育訓練</option>
+                <option value="OxOffice 導入諮詢">OxOffice 導入諮詢</option>
+                <option value="OxOffice 雲端服務">OxOffice 雲端服務</option>
+            </select>
         </div>
         <div class="form-group col-md-2">
-            <input type="" name='date' class="form-control" id="date">
+            <input type="" name='item-1-型號' class="form-control" value='R8' readonly>
         </div>
         <div class="form-group col-md-1">
-            <input type="" name='date' class="form-control" id="date">
+            <input type="" name='item-1-單位' class="form-control" value='式' readonly>
         </div>
         <div class="form-group col-md-1">
-            <input type="" name='date' class="form-control" id="date">
-        </div>
-        <div class="form-group col-md-1">
-            <input type="" name='date' class="form-control" id="date">
-        </div>
-
-        <div class="form-group col-md-2">
-            <input type="" name='date' class="form-control" id="date">
+            <input type="number" name='item-1-數量' class="form-control" value='1' id='amount' min='0'>
         </div>
         <div class="form-group col-md-2">
-            <input type="" name='date' class="form-control" id="date">
+            <input type="" name='item-1-單價' class="form-control" value='100000' readonly>
+        </div>
+        <div class="form-group col-md-1">
+            <input type="" name='item-1-小計' class="form-control" value="100000" readonly>
+        </div>
+        <div class="form-group col-md-1">
+            <input type="" name='item-1-備註' class="form-control">
+        </div>
+        <div id="remove-1" class="col-md-1">
+            <button id="removeItem" class="btn btn-danger"> 删除 </button>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
+
+
+
+    <div class='row'>
+        <div class='col'>
+            <p class="btn btn-success" id="addItem">新增項目</p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class='col'>
+            <button type="submit" class="btn btn-primary">提交</button>
+        </div>
+    </div>
 </form>
+
+<script>
+    $(document).ready(function () {
+        $("#date").val(new Date(Date.now()).toLocaleString());
+    })
+    itemCount = 1;
+
+    $('form').on('change', '#amount', function () {
+        index = $(this).attr('name').split('-')[1];
+        amount = $(this).val();
+        price = $(this).parent().parent().find(`input[name=item-${index}-單價]`).val();
+        $(this).parent().parent().find(`input[name=item-${index}-小計]`).val(amount * price);
+
+
+    });
+
+    $('form').on('change', '#product', function () {
+        index = $(this).attr('name').split('-')[1];
+        if ($(this).val() == 'OxOffice') {
+            $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('R8');
+            $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('式');
+            $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('100000');
+            $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('100000');
+        }
+        if ($(this).val() == 'OxOffice 教育訓練') {
+            $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('6 小時');
+            $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('場');
+            $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('15000');
+            $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('15000');
+        }
+        if ($(this).val() == 'OxOffice 導入諮詢') {
+            $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('技術支援&諮詢服務');
+            $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('式');
+            $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('200000');
+            $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('200000');
+        }
+        if ($(this).val() == 'OxOffice 雲端服務') {
+            $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('雲端平台');
+            $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('套');
+            $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('1000000');
+            $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('1000000');
+        }
+    });
+
+    $('#addItem').on('click', function () {
+        itemCount++;
+        templates = `
+        <div class="form-row" id='itemgroup${itemCount}'>
+            <div class="form-group col-md-1" id='item${itemCount}'>
+                <input type="" name='item-${itemCount}-編號' class="form-control" value='${itemCount}' readonly>
+            </div>
+            <div class="form-group col-md-2">
+                    <select class='form-control' name="item-${itemCount}-產品名稱" id="product">
+                <option value="OxOffice">OxOffice</option>
+                <option value="OxOffice 教育訓練">OxOffice 教育訓練</option>
+                <option value="OxOffice 導入諮詢">OxOffice 導入諮詢</option>
+                <option value="OxOffice 雲端服務">OxOffice 雲端服務</option>
+            </select>
+            </div>
+            <div class="form-group col-md-2">
+                <input type="" name='item-${itemCount}-型號' class="form-control" value='R8' readonly>
+            </div>
+            <div class="form-group col-md-1">
+                <input type="" name='item-${itemCount}-單位' class="form-control" value='式' readonly>
+            </div>
+            <div class="form-group col-md-1">
+                <input type="number" name='item-${itemCount}-數量' class="form-control" value='1' id='amount' min='0'>
+            </div>
+            <div class="form-group col-md-2">
+                <input type="number" name='item-${itemCount}-單價' class="form-control" value='100000' readonly>
+            </div>
+            <div class="form-group col-md-1">
+                <input type="" name='item-${itemCount}-小計' class="form-control" value="100000" readonly>
+            </div>
+            <div class="form-group col-md-1">
+                <input type="" name='item-${itemCount}-備註' class="form-control">
+            </div>
+            <div id="remove-${itemCount}" class="col-md-1">
+                <button id="removeItem" class="btn btn-danger"> 删除 </button>
+            </div>
+        <div>
+        `
+        $("#product").change(function () {
+            index = $(this).attr('name').split('-')[1];
+            if ($(this).val() == 'OxOffice') {
+                $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('R8');
+                $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('式');
+                $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('100000');
+            }
+            if ($(this).val() == 'OxOffice 教育訓練') {
+                $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('6 小時');
+                $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('場');
+                $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('15000');
+            }
+            if ($(this).val() == 'OxOffice 導入諮詢') {
+                $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('技術支援&諮詢服務');
+                $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('式');
+                $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('200000');
+            }
+            if ($(this).val() == 'OxOffice 雲端服務') {
+                $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('雲端平台');
+                $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('套');
+                $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('1000000');
+            }
+        });
+        $(this).parent().parent().before(templates);
+    });
+
+
+    $('form').on('click', '#removeItem', function () {
+        number = Number($(this).parent().attr('id').split('-')[1]);
+        $(this).parent().parent().remove();
+        for (index = number; index <= itemCount; index++) {
+            itemID = '#item' + (index + 1);
+            removeID = '#remove-' + (index + 1);
+            $(itemID).find('input').val(index);
+            $(itemID).attr('id', "item" + index);
+            $(removeID).attr('id', "remove-" + index);
+        }
+        itemCount--;
+    });
+    $("form").keypress(function (e) {
+        //Enter key
+        if (e.which == 13) {
+            return false;
+        }
+    });
+</script>
 {% endblock %}

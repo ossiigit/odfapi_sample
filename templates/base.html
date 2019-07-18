@@ -5,35 +5,30 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
     <script src='static/js/bootstrap.js'></script>
     <link rel='stylesheet' href='static/css/bootstrap.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 </head>
 
 <body>
-    <ul class="nav justify-content-center">
-        <li class="nav-item">
-            <a class="nav-link active" href="/">首頁</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="/salary">關於 API</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/resume">仲介履歷 (json)</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/price">報價單 (行動表單)</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/salary">薪資表 (行動表單)</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="/salary">open data 開放政府資料</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="/salary">行程表 (旅遊業應用)</a>
-        </li>
-    </ul>
     <div class="container">
-        <h3>{% block title %}{% endblock %}</h3>
+        <ul class="nav justify-content-center bg-light">
+            <li class="nav-item">
+                <a class="nav-link active" href="/">首頁</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/about">關於 API</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/resume">仲介履歷 (json)</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/price">報價單 (表單)</a>
+            </li>
+        </ul>
+    </div>
+    <br>   
+    <div class="container">
+        <h3 class='text-center'>{% block title %}{% endblock %}</h3>
         <br>
         {% block content %}{% endblock %}
     </div>
