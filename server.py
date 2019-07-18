@@ -4,6 +4,7 @@ from flask import Flask, escape, request, render_template, send_from_directory
 import requests, json
 from datetime import datetime
 from conf.odfapi import apilist
+import os
 app = Flask(__name__)
 
 @app.route('/')
@@ -28,6 +29,8 @@ def result():
     jsonData = request.form['userinput好']
     res = requests.post(apilist[api],json=json.loads(jsonData))
     filename = api + str(datetime.now()).replace(' ','').replace(':','')
+    if not os.path.exists('file'):
+        os.mkdir('file')
     with open(f'file/{filename}.odt', 'wb') as f :
         f.write(res.content)
     return render_template('result.html', link=f'{filename}.odt')
@@ -59,6 +62,8 @@ def result2():
 
     res = requests.post(apilist[api], json=jsonData)
     filename = api + str(datetime.now()).replace(' ','').replace(':','')
+    if not os.path.exists('file'):
+        os.mkdir('file')
     with open(f'file/{filename}.odt', 'wb') as f :
         f.write(res.content)
     return render_template('result.html', link=f'{filename}.odt')
