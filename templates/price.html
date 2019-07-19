@@ -215,21 +215,29 @@
                 $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('R8');
                 $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('式');
                 $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('100000');
+                $(this).parent().parent().find(`input[name=item-${index}-數量]`).val('1');
+                $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('100000');
             }
             if ($(this).val() == 'OxOffice 教育訓練') {
                 $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('6 小時');
                 $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('場');
                 $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('15000');
+                $(this).parent().parent().find(`input[name=item-${index}-數量]`).val('1');
+                $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('15000');
             }
             if ($(this).val() == 'OxOffice 導入諮詢') {
                 $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('技術支援&諮詢服務');
                 $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('式');
                 $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('200000');
+                $(this).parent().parent().find(`input[name=item-${index}-數量]`).val('1');
+                $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('200000');
             }
             if ($(this).val() == 'OxOffice 雲端服務') {
                 $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('雲端平台');
                 $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('套');
                 $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('1000000');
+                $(this).parent().parent().find(`input[name=item-${index}-數量]`).val('1');
+                $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('1000000');
             }
         });
         $(this).parent().parent().before(templates);
