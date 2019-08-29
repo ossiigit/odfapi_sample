@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block title %}
+HTML table 2 spreadsheet
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <h3>Bootstrap 4 table with borders</h3>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Number of Sales</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Jan</th>
+                <td>105</td>
+                <td>$15,000.00</td>
+            </tr>
+            <tr>
+                <th scope="row">Feb</th>
+                <td>95</td>
+                <td>$12,000.00</td>
+            </tr>
+            <tr>
+                <th scope="row">Mar</th>
+                <td>150</td>
+                <td>$20,000.00</td>
+            </tr>
+            <tr>
+                <th scope="row">Apr</th>
+                <td>50</td>
+                <td>$30,000.00</td>
+            </tr>
+            <tr>
+                <th scope="row">May</th>
+                <td>80</td>
+                <td>$15,000.00</td>
+            </tr>
+            <tr>
+                <th scope="row">Jun</th>
+                <td>110</td>
+                <td>$22,000.00</td>
+            </tr>
+            <tr>
+                <th colspan="2" scope="row">Grand Total</th>
+                <td>$114,000.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <button id="tbl2sc" class="btn btn-primary">
+        {{_('把 table 傳給 tbl2sc 進行轉換, 伺服器下載')}}
+    </button>
+
+    <button id="dir-tbl2sc" class="btn btn-primary">
+        {{_('把 table 傳給 tbl2sc 進行轉換, 直接下載')}}
+    </button>
+</div>
+
+<script>
+
+    // Download link 
+    $("#tbl2sc").on("click", function tbl2sc() {
+        var tableStr = document.getElementsByTagName("table")[0].outerHTML;
+        url = "/tbl2sc"
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                "content": tableStr
+            },
+            complete: function (res) {
+                window.location.href = "/tbl2sc_result";
+            },
+            dataType: "JSON"
+        });
+    });
+
+    // 網頁直接下載
+    $("#dir-tbl2sc").on("click", function tbl2sc() {
+        var tableStr = document.getElementsByTagName("table")[0].outerHTML;
+        url = "http://192.168.3.11:8080/lool/table2spreadsheet"
+        formData=""
+        jsonData = {
+            "title":"Hello",
+            "content":tableStr,
+            "format":"ods"
+        }
+        for (xxx in jsonData){
+            formData += xxx
+            formData += "="
+            formData += jsonData[xxx]
+            formData += "&"
+        }
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            body: formData,
+            headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        }).then(function(response){
+            return response.blob()
+        }).then(function deal(myBlob) {
+
+            var objectURL = window.webkitURL.createObjectURL(myBlob);
+            let a = document.createElement('a')
+            a.download = 'example.ods'
+            a.href = objectURL
+            document.body.appendChild(a)
+            a.click()
+            a.remove()
+        })
+            .catch(error => console.error('Error:', error))
+            .then(response => console.log('Success:', response));
+    });
+
+
+
+
+
+
+</script>
+
+{% endblock %}

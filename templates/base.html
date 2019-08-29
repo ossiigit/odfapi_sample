@@ -13,25 +13,61 @@
     <div class="container">
         <ul class="nav justify-content-center bg-light">
             <li class="nav-item">
-                <a class="nav-link active" href="/">首頁</a>
+                <a class="nav-link active" href="/">{{ _('首頁') }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="/about">關於 API</a>
+                <a class="nav-link " href="/about">{{ _('關於 API')}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/resume">仲介履歷 (json)</a>
+                <a class="nav-link" href="/resume">{{_('仲介履歷')}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/price">報價單 (表單)</a>
+                <a class="nav-link" href="/price">{{_('報價單 Post with Json')}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/table">{{_('HTML Table to Calc')}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/price_form">{{_('報價單 Post with HTML Form')}}</a>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link btn" id="zh-TW">zh-TW</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link btn" id="en">en</button>
             </li>
         </ul>
     </div>
-    <br>   
+    <br>
     <div class="container">
         <h3 class='text-center'>{% block title %}{% endblock %}</h3>
         <br>
         {% block content %}{% endblock %}
     </div>
 </body>
+<script>
+    $('#zh-TW').on('click', function () {
+        $.ajax({
+            url: '/selectLang/',
+            method: "GET",
+            data: {
+                "lang": "zh_TW"
+            },complete: function (res) {
+                window.location.reload();
+            },
+        });
+    });
+    $('#en').on('click', function () {
+        $.ajax({
+            url: '/selectLang/',
+            method: "GET",
+            data: {
+                "lang": "en"
+            },complete: function (res) {
+                window.location.reload();
+            },
+        });
+    });
+</script>
 
 </html>

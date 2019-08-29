@@ -1,0 +1,96 @@
+# English translations for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-08-29 16:22+0800\n"
+"PO-Revision-Date: 2019-08-29 15:24+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+#: templates/about.html:4
+msgid "關於 ODF API"
+msgstr ""
+
+#: templates/about.html:15
+msgid "步驟一、利用 ODF 文件 API 的用戶端工具快速設計新的 ODF 報表範本。"
+msgstr ""
+
+#: templates/about.html:16
+msgid "步驟二、把新的 ODF 報表範本傳上伺服器端並產生 API 連結。"
+msgstr ""
+
+#: templates/about.html:17
+msgid "步驟三、把原本報表的陣列資料轉成 JSON 並 POST 到上述的 API 連結。"
+msgstr ""
+
+#: templates/about.html:18
+msgid "步驟四、使用者點選網頁連結，下載 ODF 報表。"
+msgstr ""
+
+#: templates/base.html:16
+msgid "首頁"
+msgstr "Main Page"
+
+#: templates/base.html:19
+msgid "關於 API"
+msgstr "About API"
+
+#: templates/base.html:22
+msgid "仲介履歷"
+msgstr "Resume"
+
+#: templates/base.html:25
+msgid "報價單 Post with Json"
+msgstr ""
+
+#: templates/base.html:28
+msgid "HTML Table to Calc"
+msgstr ""
+
+#: templates/base.html:31
+msgid "報價單 Post with HTML Form"
+msgstr ""
+
+#: templates/price.html:4 templates/price_HTML_Form.html:13
+msgid "報價單生成範例"
+msgstr ""
+
+#: templates/price_HTML_Form.html:4
+msgid "報價單生成範例 -- 透過 Post HTML Form"
+msgstr ""
+
+#: templates/result.html:4 templates/result.html:9
+msgid "下載連結"
+msgstr ""
+
+#: templates/resume.html:4
+msgid "履歷表生成範例"
+msgstr ""
+
+#: templates/resume.html:12
+msgid "API 名稱"
+msgstr ""
+
+#: templates/resume.html:18
+msgid "請輸入 JSON"
+msgstr ""
+
+#: templates/tbl2sc.html:59
+msgid "把 table 傳給 tbl2sc 進行轉換, 伺服器下載"
+msgstr ""
+
+#: templates/tbl2sc.html:63
+msgid "把 table 傳給 tbl2sc 進行轉換, 直接下載"
+msgstr ""
+

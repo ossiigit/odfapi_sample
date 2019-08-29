@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 
 {% block title %}
-履歷表生成範例
+{{_('履歷表生成範例')}}
 {% endblock %}
 
 
 {% block content %}
-<form method="POST" action='/result'>
+<form method="POST" action='/resume_result'>
     <div class="form-row">
         <div class="form-group col-md-3">
-            <label for="apiname">API 代號</label>
+            <label for="apiname">{{_('API 名稱')}}</label>
             <input class="form-control" id="apiname" name='apiname' value="履歷表生成範例" readonly>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label for="userinput">請輸入 JSON</label>
+            <label for="userinput">{{_('請輸入 JSON')}}</label>
             <textarea class="form-control" rows='10' name='userinput好' id="userinput"></textarea>
         </div>
     </div>

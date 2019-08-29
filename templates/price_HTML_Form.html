@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{_('報價單生成範例')}}
+{{_('報價單生成範例 -- 透過 Post HTML Form')}}
 {% endblock %}
 
 
 {% block content %}
-<form method="POST" action='/price_result'>
+<form method="POST" action='/price_html_result'>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label for="apiname">API 代號</label>
-            <input class="form-control" id="apiname" name='apiname' value="報價單生成範例" readonly>
+            <input class="form-control" id="apiname" name='apiname' value="{{_('報價單生成範例')}}" readonly>
         </div>
         <div class="form-group col-md-6">
             <label for="date">日期</label>
@@ -80,10 +80,10 @@
     <!--產品目錄-->
     <div class="form-row" id='itemgroup1'>
         <div class="form-group col-md-1" id='item1'>
-            <input type="" name='item-1-編號' class="form-control" value='1' readonly>
+            <input type="" name='項目[1][編號]' class="form-control" value='1' readonly>
         </div>
         <div class="form-group col-md-2">
-            <select class='form-control' id="product" name="item-1-產品名稱">
+            <select class='form-control' id="product" name="項目[1][產品名稱]">
                 <option value="OxOffice">OxOffice</option>
                 <option value="OxOffice 教育訓練">OxOffice 教育訓練</option>
                 <option value="OxOffice 導入諮詢">OxOffice 導入諮詢</option>
@@ -91,22 +91,22 @@
             </select>
         </div>
         <div class="form-group col-md-2">
-            <input type="" name='item-1-型號' class="form-control" value='R8' readonly>
+            <input type="" name='項目[1][型號]' class="form-control" value='R8' readonly>
         </div>
         <div class="form-group col-md-1">
-            <input type="" name='item-1-單位' class="form-control" value='式' readonly>
+            <input type="" name='項目[1][單位]' class="form-control" value='式' readonly>
         </div>
         <div class="form-group col-md-1">
-            <input type="number" name='item-1-數量' class="form-control" value='1' id='amount' min='0'>
+            <input type="number" name='項目[1][數量]' class="form-control" value='1' id='amount' min='0'>
         </div>
         <div class="form-group col-md-2">
-            <input type="" name='item-1-單價' class="form-control" value='100000' readonly>
+            <input type="" name='項目[1][單價]' class="form-control" value='100000' readonly>
         </div>
         <div class="form-group col-md-1">
-            <input type="" name='item-1-小計' class="form-control" value="100000" readonly>
+            <input type="" name='項目[1][小計]' class="form-control" value="100000" readonly>
         </div>
         <div class="form-group col-md-1">
-            <input type="" name='item-1-備註' class="form-control">
+            <input type="" name='項目[1][備註]' class="form-control">
         </div>
         <div id="remove-1" class="col-md-1">
             <button id="removeItem" class="btn btn-danger"> 删除 </button>
@@ -137,8 +137,8 @@
     $('form').on('change', '#amount', function () {
         index = $(this).attr('name').split('-')[1];
         amount = $(this).val();
-        price = $(this).parent().parent().find(`input[name=item-${index}-單價]`).val();
-        $(this).parent().parent().find(`input[name=item-${index}-小計]`).val(amount * price);
+        price = $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val();
+        $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val(amount * price);
 
 
     });
@@ -146,28 +146,28 @@
     $('form').on('change', '#product', function () {
         index = $(this).attr('name').split('-')[1];
         if ($(this).val() == 'OxOffice') {
-            $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('R8');
-            $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('式');
-            $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('100000');
-            $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('100000');
+            $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('R8');
+            $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('式');
+            $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('100000');
+            $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('100000');
         }
         if ($(this).val() == 'OxOffice 教育訓練') {
-            $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('6 小時');
-            $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('場');
-            $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('15000');
-            $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('15000');
+            $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('6 小時');
+            $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('場');
+            $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('15000');
+            $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('15000');
         }
         if ($(this).val() == 'OxOffice 導入諮詢') {
-            $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('技術支援&諮詢服務');
-            $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('式');
-            $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('200000');
-            $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('200000');
+            $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('技術支援&諮詢服務');
+            $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('式');
+            $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('200000');
+            $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('200000');
         }
         if ($(this).val() == 'OxOffice 雲端服務') {
-            $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('雲端平台');
-            $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('套');
-            $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('1000000');
-            $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('1000000');
+            $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('雲端平台');
+            $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('套');
+            $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('1000000');
+            $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('1000000');
         }
     });
 
@@ -176,10 +176,10 @@
         templates = `
         <div class="form-row" id='itemgroup${itemCount}'>
             <div class="form-group col-md-1" id='item${itemCount}'>
-                <input type="" name='item-${itemCount}-編號' class="form-control" value='${itemCount}' readonly>
+                <input type="" name='項目[${itemCount}][編號]' class="form-control" value='${itemCount}' readonly>
             </div>
             <div class="form-group col-md-2">
-                    <select class='form-control' name="item-${itemCount}-產品名稱" id="product">
+                    <select class='form-control' name="項目[${itemCount}][產品名稱]" id="product">
                 <option value="OxOffice">OxOffice</option>
                 <option value="OxOffice 教育訓練">OxOffice 教育訓練</option>
                 <option value="OxOffice 導入諮詢">OxOffice 導入諮詢</option>
@@ -187,22 +187,22 @@
             </select>
             </div>
             <div class="form-group col-md-2">
-                <input type="" name='item-${itemCount}-型號' class="form-control" value='R8' readonly>
+                <input type="" name='項目[${itemCount}][型號]' class="form-control" value='R8' readonly>
             </div>
             <div class="form-group col-md-1">
-                <input type="" name='item-${itemCount}-單位' class="form-control" value='式' readonly>
+                <input type="" name='項目[${itemCount}][單位]' class="form-control" value='式' readonly>
             </div>
             <div class="form-group col-md-1">
-                <input type="number" name='item-${itemCount}-數量' class="form-control" value='1' id='amount' min='0'>
+                <input type="number" name='項目[${itemCount}][數量]' class="form-control" value='1' id='amount' min='0'>
             </div>
             <div class="form-group col-md-2">
-                <input type="number" name='item-${itemCount}-單價' class="form-control" value='100000' readonly>
+                <input type="number" name='項目[${itemCount}][單價]' class="form-control" value='100000' readonly>
             </div>
             <div class="form-group col-md-1">
-                <input type="" name='item-${itemCount}-小計' class="form-control" value="100000" readonly>
+                <input type="" name='項目[${itemCount}][小計]' class="form-control" value="100000" readonly>
             </div>
             <div class="form-group col-md-1">
-                <input type="" name='item-${itemCount}-備註' class="form-control">
+                <input type="" name='項目[${itemCount}][備註]' class="form-control">
             </div>
             <div id="remove-${itemCount}" class="col-md-1">
                 <button id="removeItem" class="btn btn-danger"> 删除 </button>
@@ -212,32 +212,32 @@
         $("#product").change(function () {
             index = $(this).attr('name').split('-')[1];
             if ($(this).val() == 'OxOffice') {
-                $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('R8');
-                $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('式');
-                $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('100000');
-                $(this).parent().parent().find(`input[name=item-${index}-數量]`).val('1');
-                $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('100000');
+                $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('R8');
+                $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('式');
+                $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('100000');
+                $(this).parent().parent().find(`input[name=項目[${index}][數量]]`).val('1');
+                $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('100000');
             }
             if ($(this).val() == 'OxOffice 教育訓練') {
-                $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('6 小時');
-                $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('場');
-                $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('15000');
-                $(this).parent().parent().find(`input[name=item-${index}-數量]`).val('1');
-                $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('15000');
+                $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('6 小時');
+                $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('場');
+                $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('15000');
+                $(this).parent().parent().find(`input[name=項目[${index}][數量]]`).val('1');
+                $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('15000');
             }
             if ($(this).val() == 'OxOffice 導入諮詢') {
-                $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('技術支援&諮詢服務');
-                $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('式');
-                $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('200000');
-                $(this).parent().parent().find(`input[name=item-${index}-數量]`).val('1');
-                $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('200000');
+                $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('技術支援&諮詢服務');
+                $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('式');
+                $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('200000');
+                $(this).parent().parent().find(`input[name=項目[${index}][數量]]`).val('1');
+                $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('200000');
             }
             if ($(this).val() == 'OxOffice 雲端服務') {
-                $(this).parent().parent().find(`input[name=item-${index}-型號]`).val('雲端平台');
-                $(this).parent().parent().find(`input[name=item-${index}-單位]`).val('套');
-                $(this).parent().parent().find(`input[name=item-${index}-單價]`).val('1000000');
-                $(this).parent().parent().find(`input[name=item-${index}-數量]`).val('1');
-                $(this).parent().parent().find(`input[name=item-${index}-小計]`).val('1000000');
+                $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('雲端平台');
+                $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('套');
+                $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('1000000');
+                $(this).parent().parent().find(`input[name=項目[${index}][數量]]`).val('1');
+                $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('1000000');
             }
         });
         $(this).parent().parent().before(templates);
