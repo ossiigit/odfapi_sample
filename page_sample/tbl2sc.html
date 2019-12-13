@@ -1,0 +1,144 @@
+<html>
+<link type="text/css" id="dark-mode" rel="stylesheet" href="">
+<style type="text/css" id="dark-mode-custom-style"></style>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+</head>
+
+<body>
+
+    <br>
+    <div class="container">
+        <h3 class="text-center">
+            HTML table 2 spreadsheet
+        </h3>
+        <br>
+
+        <div class="container">
+            <h3>Bootstrap 4 table with borders</h3>
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Number of Sales</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Jan</th>
+                        <td>105</td>
+                        <td>$15,000.00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Feb</th>
+                        <td>95</td>
+                        <td>$12,000.00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Mar</th>
+                        <td>150</td>
+                        <td>$20,000.00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Apr</th>
+                        <td>50</td>
+                        <td>$30,000.00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">May</th>
+                        <td>80</td>
+                        <td>$15,000.00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Jun</th>
+                        <td>110</td>
+                        <td>$22,000.00</td>
+                    </tr>
+                    <tr id="endtable">
+                        <th colspan="2" scope="row">Grand Total</th>
+                        <td>$114,000.00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class='row'>
+                <div class='col'>
+                    <p class="btn btn-success" id="addItem">新增資料</p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <button id="dir-tbl2sc" class="btn btn-primary">
+                把 table 傳給 tbl2sc 進行轉換, 直接下載
+            </button>
+        </div>
+
+        <script>
+            // 網頁直接下載
+            $("#dir-tbl2sc").on("click", function tbl2sc() {
+                var tableStr = document.getElementsByTagName("table")[0].outerHTML;
+                url = "https://127.0.0.1:9980/lool/table2spreadsheet"
+                formData = ""
+                jsonData = {
+                    "title": "Hello",
+                    "content": tableStr,
+                    "format": "ods"
+                }
+                for (xxx in jsonData) {
+                    formData += xxx
+                    formData += "="
+                    formData += jsonData[xxx]
+                    formData += "&"
+                }
+                fetch(url, {
+                    method: 'POST', // or 'PUT'
+                    body: formData,
+                    headers: new Headers({
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    })
+                }).then(function (response) {
+                    return response.blob()
+                }).then(function deal(myBlob) {
+
+                    var objectURL = window.webkitURL.createObjectURL(myBlob);
+                    let a = document.createElement('a')
+                    a.download = 'tbl2sc測試範例.ods'
+                    a.href = objectURL
+                    document.body.appendChild(a)
+                    a.click()
+                    a.remove()
+                })
+                    .catch(error => console.error('Error:', error))
+                    .then(response => console.log('Success:', response));
+            });
+
+        </script>
+
+
+    </div>
+
+    <script>
+        $('#addItem').on('click', function () {
+            templates = `
+                <tr>
+                    <th scope="row">Month</th>
+                    <td>Numbers</td>
+                    <td>Amount</td>
+                </tr>
+            `
+        $("#endtable").after(templates);
+        });
+    </script>
+
+</body>
+
+</html>
