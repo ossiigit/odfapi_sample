@@ -1,0 +1,309 @@
+<html>
+<link type="text/css" id="dark-mode" rel="stylesheet" href="">
+<style type="text/css" id="dark-mode-custom-style"></style>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <!-- Color Picker under MIT LICENSE -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+</head>
+
+<body>
+    <!--******************************轉檔測試******************************-->
+    <div id="a1" class="tab-pane in active container">
+        <h1> Converter Demo Page</h1>
+
+        <div class="fluid-container panel-body" style="padding-top:10px;">
+            <div class="alert alert-primary container" role="alert" id="pop_message">
+                <!--提示訊息區域-->
+            </div>
+
+            <form class="form-horizontal" id="test_form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="">測試檔案</label>
+                    <input name="filename" type="file" class="form-control-file" id="test_filename">
+                </div>
+                <!--API & 轉檔 類型-->
+                <div class="form-group">
+                    <label>API 類型
+                        <select name="test_api_type" value="odt" class="form-control" id="test_api_type">
+                            <option value="filecontent">轉檔</option>
+                            <option value="viewurl">轉檔後預覽</option>
+                            <option value="image">轉圖檔</option>
+                        </select>
+                    </label>
+                    <label>轉檔類型
+                        <select name="test_target_type" value="odt" class="form-control" id="test_target_type">
+                            <option value="odt">odt</option>
+                            <option value="ods">ods</option>
+                            <option value="odp">odp</option>
+                            <option value="pdf">pdf</option>
+                        </select>
+                    </label>
+                </div>
+
+                <!--轉檔請求與結果呈現-->
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <button class="btn btn-primary" id="test_form_submit">開始轉檔？</button>
+                        </div>
+                        <div class="col">
+                            <div class="progress" id="pgbar-root" style="height: 100%;">
+                                <div id="pgbar" class="active progress-bar progress-bar-striped progress-bar-animated"
+                                    role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+                                    style="width: 0%">
+                                </div>
+                            </div>
+                            <a id="result_viewurl" style="display:none" target="_blank">預覽連結</a>
+                            <a id="result_filecontent" style="display:none" target="_blank">下載連結</a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <!--浮水印-->
+                <div class="form-group" id="test_watermark_checked">
+                    <input type="checkbox" name="useTextWatermark" checked>
+                    <label>使用浮水印</label>
+                </div>
+                <div id="test_advance_group">
+                    <div class="form-group">
+                        <label for="">選擇文字浮水印顏色
+                            <input name="watermarkColor" type="text" class="form-control" id="test_watermarkColor">
+                        </label>
+                        <label> 請點我!
+                            <button id="test_color" class="pcr-button"></button>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="">浮水印文字
+                            <input name="watermarkTitle" value="WaterMark" type="text" class="form-control"
+                                id="test_watermarkTitle">
+                        </label>
+                        <label for="test_watermarkOpacity">透明度 0 - 100
+                            <input name="watermarkOpacity" value="50" type="text" class="form-control"
+                                id="test_watermarkOpacity">
+                        </label>
+
+                        <label for="">浮水印旋轉角度
+                            <input name="watermarkAngle" value="45" type="text" class="form-control"
+                                id="test_watermarkAngle">
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $('form').submit(function (e) {
+            e.preventDefault();
+        });
+
+        // 動態修改轉檔類型選項
+        $("#test_api_type").change(() => {
+            api_type = $("#test_api_type").val();
+            if (api_type == "viewurl") {
+                $("#test_target_type").attr("disabled", "");
+            } else if (api_type == "image") {
+                $("#test_target_type").removeAttr("disabled");
+                $('#test_target_type').children().remove();
+                $.each(['png', 'jpg'], function (key, value) {
+                    $('#test_target_type')
+                        .append($("<option></option>")
+                            .attr("value", value)
+                            .text(value));
+                });
+            } else if (api_type == "filecontent") {
+                $("#test_target_type").removeAttr("disabled");
+                $('#test_target_type').children().remove();
+                $.each(['odt', 'ods', 'odp', 'pdf'], function (key, value) {
+                    $('#test_target_type')
+                        .append($("<option></option>")
+                            .attr("value", value)
+                            .text(value));
+                });
+            }
+        });
+
+        $("#test_form").change(function () {
+            // 初始化轉檔結果
+            $("#pop_message").html("");
+            $('#pgbar').css({
+                width: '0%'
+            }).html('');
+            $("#result_filecontent").css({ display: "none" });
+            $("#result_viewurl").css({ display: "none" });
+
+            // 浮水印顯示機制
+            api_type = $("#test_api_type").val();
+            target_type = $("#test_target_type").val();
+            isWriter = target_type == "odt" || target_type == "pdf" ? true : false;
+            isFilecontent = api_type == "filecontent" ? true : false;
+            useTextWatermark = $("input[name=useTextWatermark]")[0].checked;
+
+            if (isWriter && isFilecontent) {
+                if (useTextWatermark) {
+                    $("#test_advance_group").show(500);
+                } else {
+                    $("#test_advance_group").hide(500);
+                }
+                $("#test_watermark_checked").show(500);
+            } else {
+                $("#test_advance_group").hide(500);
+                $("#test_watermark_checked").hide(500);
+            }
+
+        });
+
+        // 轉檔請求
+        $('#test_form_submit').click(function () {
+
+            /* TODO: read API Addr from db */
+            var test_host = "http://192.168.3.52:9980";
+            
+            var test_target_type = $("#test_target_type").val().toLowerCase();
+            var test_api_type = $("#test_api_type").val().toLowerCase();
+            test_api_type = test_api_type == 'image' ? 'filecontent' : test_api_type;
+            var test_url = test_host + `/lool/converter/${test_target_type}/${test_api_type}`;
+            var fData = new FormData(document.getElementById("test_form"));
+            if (fData.get("filename").name == "") {
+                $("#pop_message").html("請提供檔案!");
+                return;
+            }
+
+            // 先取得 access_token
+            $.ajax({
+                url: test_url,
+                method: "POST",
+                success: (res) => {
+                    fData.set("access_token", res.replace(/"/g, ""));
+                    useTextWatermark = $("input[name=useTextWatermark]")[0].checked;
+                    if (useTextWatermark) {
+                        fData.set("useTextWatermark", 1);
+                    }
+                    else {
+                        fData.set("useTextWatermark", 0);
+                    }
+
+                    // 透過 access_token 進行轉檔
+                    $.ajax({
+                        xhr: function xhr() {
+                            var xhr = new window.XMLHttpRequest();
+                            if (test_api_type == "filecontent")
+                                xhr.responseType = 'blob';
+                            xhr.upload.addEventListener("progress", function (evt) {
+                                if (evt.lengthComputable) {
+                                    var percentComplete = evt.loaded / evt.total;
+                                    $('#pgbar').css({
+                                        width: (percentComplete) * 100 + '%'
+                                    }).html('上傳檔案中...');
+                                }
+                            }, false);
+                            xhr.upload.addEventListener("load", function (evt) {
+                                if (evt.lengthComputable) {
+                                    var percentComplete = evt.loaded / evt.total;
+                                    $('#pgbar').css({
+                                        width: (percentComplete) * 100 + '%'
+                                    }).html('伺服器處理中...');
+                                }
+                            }, false);
+                            return xhr;
+                        },
+                        url: test_url,
+                        type: "POST",
+                        data: fData,
+                        datatype: "json",
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+
+                        success: (res) => {
+                            $('#pgbar').html('完成');
+                            if (test_api_type == "filecontent") {
+                                var objectURL = window.webkitURL.createObjectURL(res);
+
+                                test_target_type = test_target_type == "png" || test_target_type == "jpg" ? "zip" : test_target_type;
+                                $("#result_filecontent").attr({ "href": objectURL, "download": '轉檔結果.' + test_target_type });
+                                $("#result_filecontent").css({ display: "block" });
+                                $("#pop_message").html("轉檔成功，請確認轉檔結果 !");
+                            }
+                            else {
+                                $("#result_viewurl").css({ display: "block" });
+                                $("#result_viewurl").attr("href", res.replace(/"/g, ""));
+                            }
+                        },
+                        error: (jqXHR, error, errorThrown) => {
+                            $("#pop_message").html("伺服器錯誤 !");
+                            $('#pgbar').css({
+                                width: '100%'
+                            }).html('錯誤');
+                        }
+                    });
+                },
+                error: (jqXHR, error, errorThrown) => {
+                    $("#pop_message").html("伺服器錯誤 !");
+                }
+            });
+        });
+
+        // 浮水印顏色按鈕
+        const pickr = Pickr.create({
+            el: '#test_color',
+            theme: 'classic', // or 'monolith', or 'nano'
+            swatches: [
+                'rgba(244, 67, 54, 1)',
+                'rgba(233, 30, 99, 0.95)',
+                'rgba(156, 39, 176, 0.9)',
+                'rgba(103, 58, 183, 0.85)',
+                'rgba(63, 81, 181, 0.8)',
+                'rgba(33, 150, 243, 0.75)',
+                'rgba(3, 169, 244, 0.7)',
+                'rgba(0, 188, 212, 0.7)',
+                'rgba(0, 150, 136, 0.75)',
+                'rgba(76, 175, 80, 0.8)',
+                'rgba(139, 195, 74, 0.85)',
+                'rgba(205, 220, 57, 0.9)',
+                'rgba(255, 235, 59, 0.95)',
+                'rgba(255, 193, 7, 1)'
+            ],
+            components: {
+                // Main components
+                preview: true,
+                opacity: false,
+                hue: false,
+
+                // Input / output Options
+                interaction: {
+                    hex: true,
+                    rgba: true,
+                    hsla: true,
+                    hsva: true,
+                    cmyk: true,
+                    input: true,
+                    clear: true,
+                    save: true
+
+                }
+            }
+        });
+        pickr.on("init", instance => {
+            color = instance.getColor().toHEXA().toString().replace("#", "");
+            $("#test_watermarkColor").val(color);
+        }).on("save", function (color, instance) {
+            color = color.toHEXA().toString();
+            color = color.replace("#", "");
+            $("#test_watermarkColor").val(color);
+        });
+
+    </script>
+</body>
+
+</html>

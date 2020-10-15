@@ -1,0 +1,545 @@
+<html>
+<link type="text/css" id="dark-mode" rel="stylesheet" href="">
+<style type="text/css" id="dark-mode-custom-style"></style>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1> Mergeodf Demo Page</h1>
+        <div class="alert alert-primary container" role="alert" id="pop_message">
+            <!--提示訊息區域-->
+        </div>
+
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                    aria-controls="nav-home" aria-selected="true">報價單範例</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                    aria-controls="nav-profile" aria-selected="false">履歷表範例</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                    aria-controls="nav-contact" aria-selected="false">Mergeodf 說明</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+
+            <!--報價單-->
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <form id="price">
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="apiname">目標報表</label>
+                            <input class="form-control" id="apiname" name='apiname' value="報價單生成範例" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="date">日期</label>
+                            <input type="" name='日期' class="form-control" id='date'>
+                        </div>
+                    </div>
+                    <!--公司資訊-->
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="date">廠商</label>
+                            <input type="" name='廠商' class="form-control" value='晟鑫科技'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">負責人</label>
+                            <input type="" name='負責人' class="form-control" value='先生先生'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">住址</label>
+                            <input type="" name='住址' class="form-control" value='地球的某個地方'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">統一編號</label>
+                            <input type="" name='統一編號' class="form-control" value='10101010'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">電話</label>
+                            <input type="" name='電話' class="form-control" value='02-xxxxxxx'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">傳真</label>
+                            <input type="" name='傳真' class="form-control" value='02-xxxxxxx'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">電子信箱</label>
+                            <input type="email" name='電子信箱' class="form-control" value='ossii@mail.ossii.com.tw'>
+                        </div>
+                    </div>
+                    <!--項目資訊-->
+
+                    <div class="form-row">
+                        <div class="form-group col-md-1">
+                            <label for="date">編號</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="date">產品名稱</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="date">型號規格</label>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <label for="date">單位</label>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <label for="date">數量</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="date">單價</label>
+                        </div>
+
+                        <div class="form-group col-md-1">
+                            <label for="date">小計</label>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <label for="date">備註</label>
+                        </div>
+                    </div>
+                    <!--產品目錄-->
+                    <div class="form-row" id='itemgroup1'>
+                        <div class="form-group col-md-1" id='item1'>
+                            <input type="" name='項目[1][編號]' class="form-control" value='1' readonly>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <select class='form-control' id="product" name="項目[1][產品名稱]">
+                                <option value="OxOffice">OxOffice</option>
+                                <option value="OxOffice 教育訓練">OxOffice 教育訓練</option>
+                                <option value="OxOffice 導入諮詢">OxOffice 導入諮詢</option>
+                                <option value="OxOffice 雲端服務">OxOffice 雲端服務</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="" name='項目[1][型號]' class="form-control" value='R8' readonly>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <input type="" name='項目[1][單位]' class="form-control" value='式' readonly>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <input type="number" name='項目[1][數量]' class="form-control" value='1' id='amount' min='0'>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="" name='項目[1][單價]' class="form-control" value='100000' readonly>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <input type="" name='項目[1][小計]' class="form-control" value="100000" readonly>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <input type="" name='項目[1][備註]' class="form-control">
+                        </div>
+                        <div id="remove-1" class="col-md-1">
+                            <button id="removeItem" class="btn btn-danger"> 删除 </button>
+                        </div>
+                    </div>
+
+
+
+                    <div class='row'>
+                        <div class='col'>
+                            <p class="btn btn-success" id="addItem">新增項目</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class='row'>
+
+                        <div class='col'>
+                            <p id="gogo" class="btn btn-primary">提交</p>
+                        </div>
+                        <div class="col">
+                            <a id="result_viewurl" style="display:none" target="_blank">預覽連結</a>
+                            <a id="result_filecontent" style="display:none" target="_blank">下載連結</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <!--履歷表-->
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <form method="POST" id="employ_data">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="date">中文姓名</label>
+                            <input type="" name='中文姓名' class="form-control" id='chinese_name'>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="date">英文姓名</label>
+                            <input type="" name='英文姓名' class="form-control" id='eng_name'>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="date">身分字號</label>
+                            <input type="" name='身分字號' class="form-control" id='identifier'>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="date">到職日期</label>
+                            <input type="" name='到職日期' class="form-control" id='date_employment'>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="date">電郵信箱</label>
+                            <input type="" name='電郵信箱' class="form-control" id='email'>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="date">第二電郵信箱</label>
+                            <input type="" name='第二電郵信箱' class="form-control" id='email_2'>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="date">戶籍地址</label>
+                            <input type="" name='戶籍地址' class="form-control" id='address'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">出生年月日</label>
+                            <input type="" name='出生年月日' class="form-control" id='birthday'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">性別</label>
+                            <input type="" name='性別' class="form-control" id='gender'>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="date">通訊地址</label>
+                            <input type="" name='通訊地址' class="form-control" id='contact_address'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">血型</label>
+                            <input type="" name='血型' class="form-control" id='blood_type'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">市話</label>
+                            <input type="" name='市話' class="form-control" id='phone'>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="date">婚姻狀況</label>
+                            <input type="" name='婚姻狀況' class="form-control" id='marriage'>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="date">手機</label>
+                            <input type="" name='手機' class="form-control" id='cellphone'>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="date">緊急聯絡人1</label>
+                            <input type="" name='緊急聯絡人1' class="form-control" id='emergency_contact_1'>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="date">緊急聯絡人1關係</label>
+                            <input type="" name='緊急聯絡人1關係' class="form-control" id='emergency_contact_relation_1'>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="date">緊急聯絡人1電話</label>
+                            <input type="" name='緊急聯絡人1電話' class="form-control" id='emergency_contact_phone_1'>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="date">緊急聯絡人2</label>
+                            <input type="" name='緊急聯絡人2' class="form-control" id='emergency_contact_2'>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="date">緊急聯絡人2關係</label>
+                            <input type="" name='緊急聯絡人2關係' class="form-control" id='emergency_contact_relation_2'>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="date">緊急聯絡人2電話</label>
+                            <input type="" name='緊急聯絡人2電話' class="form-control" id='emergency_contact_phone_2'>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="date">學校名稱1</label>
+                            <input type="" name='學校名稱1' class="form-control" id='college_1'>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="date">系所1</label>
+                            <input type="" name='系所1' class="form-control" id='department_1'>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="date">起始時間1</label>
+                            <input type="" name='起始時間1' class="form-control" id='start_1'>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="date">系所1</label>
+                            <input type="" name='結束時間1' class="form-control" id='end_1'>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="date">學校名稱2</label>
+                            <input type="" name='學校名稱2' class="form-control" id='college_2'>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="date">系所2</label>
+                            <input type="" name='系所2' class="form-control" id='department_2'>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="date">起始時間2</label>
+                            <input type="" name='起始時間2' class="form-control" id='start_2'>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="date">系所2</label>
+                            <input type="" name='結束時間2' class="form-control" id='end_2'>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="date">專長or證照1</label>
+                            <input type="" name='專長or證照1' class="form-control" id='ability_1'>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="date">專長or證照2</label>
+                            <input type="" name='專長or證照2' class="form-control" id='ability_2'>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="date">專長or證照3</label>
+                            <input type="" name='專長or證照3' class="form-control" id='ability_3'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人稱謂1</label>
+                            <input type="" name='家人稱謂1' class="form-control" id='family_1'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人姓名1</label>
+                            <input type="" name='家人姓名1' class="form-control" id='family_name_1'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">服務機關1</label>
+                            <input type="" name='服務機關1' class="form-control" id='family_work_1'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人年齡1</label>
+                            <input type="" name='家人年齡1' class="form-control" id='family_age_1'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人稱謂2</label>
+                            <input type="" name='家人稱謂2' class="form-control" id='family_2'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人姓名2</label>
+                            <input type="" name='家人姓名2' class="form-control" id='family_name_2'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">服務機關2</label>
+                            <input type="" name='服務機關2' class="form-control" id='family_work_2'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人年齡2</label>
+                            <input type="" name='家人年齡2' class="form-control" id='family_age_2'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人稱謂3</label>
+                            <input type="" name='家人稱謂3' class="form-control" id='family_3'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人姓名3</label>
+                            <input type="" name='家人姓名3' class="form-control" id='family_name_3'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">服務機關3</label>
+                            <input type="" name='服務機關3' class="form-control" id='family_work_3'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人年齡3</label>
+                            <input type="" name='家人年齡3' class="form-control" id='family_age_3'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人稱謂4</label>
+                            <input type="" name='家人稱謂4' class="form-control" id='family_4'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人姓名4</label>
+                            <input type="" name='家人姓名4' class="form-control" id='family_name_4'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">服務機關4</label>
+                            <input type="" name='服務機關4' class="form-control" id='family_work_4'>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="date">家人年齡4</label>
+                            <input type="" name='家人年齡4' class="form-control" id='family_age_4'>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+
+                        <div class='col'>
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <!--XOOPS 說明與影片-->
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<!--這是報價單的 Script-->
+<script>
+    $(document).ready(function () {
+        $("#date").val(new Date(Date.now()).toLocaleString());
+    })
+    itemCount = 1;
+
+    $('form#price').on('change', '#amount', function () {
+        index = $(this).attr('name').split('-')[1];
+        amount = $(this).val();
+        price = $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val();
+        $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val(amount * price);
+
+
+    });
+
+    $('form#price').on('change', '#product', function () {
+        index = $(this).attr('name').split('-')[1];
+        if ($(this).val() == 'OxOffice') {
+            $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('R8');
+            $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('式');
+            $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('100000');
+            $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('100000');
+        }
+        if ($(this).val() == 'OxOffice 教育訓練') {
+            $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('6 小時');
+            $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('場');
+            $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('15000');
+            $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('15000');
+        }
+        if ($(this).val() == 'OxOffice 導入諮詢') {
+            $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('技術支援&諮詢服務');
+            $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('式');
+            $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('200000');
+            $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('200000');
+        }
+        if ($(this).val() == 'OxOffice 雲端服務') {
+            $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('雲端平台');
+            $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('套');
+            $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('1000000');
+            $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('1000000');
+        }
+    });
+
+    $('#addItem').on('click', function () {
+        itemCount++;
+        templates = `
+        <div class="form-row" id='itemgroup${itemCount}'>
+            <div class="form-group col-md-1" id='item${itemCount}'>
+                <input type="" name='項目[${itemCount}][編號]' class="form-control" value='${itemCount}' readonly>
+            </div>
+            <div class="form-group col-md-2">
+                    <select class='form-control' name="項目[${itemCount}][產品名稱]" id="product">
+                <option value="OxOffice">OxOffice</option>
+                <option value="OxOffice 教育訓練">OxOffice 教育訓練</option>
+                <option value="OxOffice 導入諮詢">OxOffice 導入諮詢</option>
+                <option value="OxOffice 雲端服務">OxOffice 雲端服務</option>
+            </select>
+            </div>
+            <div class="form-group col-md-2">
+                <input type="" name='項目[${itemCount}][型號]' class="form-control" value='R8' readonly>
+            </div>
+            <div class="form-group col-md-1">
+                <input type="" name='項目[${itemCount}][單位]' class="form-control" value='式' readonly>
+            </div>
+            <div class="form-group col-md-1">
+                <input type="number" name='項目[${itemCount}][數量]' class="form-control" value='1' id='amount' min='0'>
+            </div>
+            <div class="form-group col-md-2">
+                <input type="number" name='項目[${itemCount}][單價]' class="form-control" value='100000' readonly>
+            </div>
+            <div class="form-group col-md-1">
+                <input type="" name='項目[${itemCount}][小計]' class="form-control" value="100000" readonly>
+            </div>
+            <div class="form-group col-md-1">
+                <input type="" name='項目[${itemCount}][備註]' class="form-control">
+            </div>
+            <div id="remove-${itemCount}" class="col-md-1">
+                <button id="removeItem" class="btn btn-danger"> 删除 </button>
+            </div>
+        <div>
+        `
+        $("#product").change(function () {
+            index = $(this).attr('name').split('-')[1];
+            if ($(this).val() == 'OxOffice') {
+                $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('R8');
+                $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('式');
+                $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('100000');
+                $(this).parent().parent().find(`input[name=項目[${index}][數量]]`).val('1');
+                $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('100000');
+            }
+            if ($(this).val() == 'OxOffice 教育訓練') {
+                $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('6 小時');
+                $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('場');
+                $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('15000');
+                $(this).parent().parent().find(`input[name=項目[${index}][數量]]`).val('1');
+                $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('15000');
+            }
+            if ($(this).val() == 'OxOffice 導入諮詢') {
+                $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('技術支援&諮詢服務');
+                $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('式');
+                $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('200000');
+                $(this).parent().parent().find(`input[name=項目[${index}][數量]]`).val('1');
+                $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('200000');
+            }
+            if ($(this).val() == 'OxOffice 雲端服務') {
+                $(this).parent().parent().find(`input[name=項目[${index}][型號]]`).val('雲端平台');
+                $(this).parent().parent().find(`input[name=項目[${index}][單位]]`).val('套');
+                $(this).parent().parent().find(`input[name=項目[${index}][單價]]`).val('1000000');
+                $(this).parent().parent().find(`input[name=項目[${index}][數量]]`).val('1');
+                $(this).parent().parent().find(`input[name=項目[${index}][小計]]`).val('1000000');
+            }
+        });
+        $(this).parent().parent().before(templates);
+    });
+
+
+    $('form#price').on('click', '#removeItem', function () {
+        number = Number($(this).parent().attr('id').split('-')[1]);
+        $(this).parent().parent().remove();
+        for (index = number; index <= itemCount; index++) {
+            itemID = '#item' + (index + 1);
+            removeID = '#remove-' + (index + 1);
+            $(itemID).find('input').val(index);
+            $(itemID).attr('id', "item" + index);
+            $(removeID).attr('id', "remove-" + index);
+        }
+        itemCount--;
+    });
+    $("form#price").keypress(function (e) {
+        //Enter key
+        if (e.which == 13) {
+            return false;
+        }
+    });
+
+    $("#gogo").click(() => {
+        var fData = new FormData(document.getElementById("price"));
+        $.ajax({
+            xhr: function xhr() {
+                var xhr = new window.XMLHttpRequest();
+                xhr.responseType = 'blob';
+                return xhr;
+            },
+            url: "https://192.168.3.174:9980/lool/mergeodf/e38f6d85-77b2-11ea-97e3-96779d961a7a",
+            type: "POST",
+            data: fData,
+            processData: false,
+            contentType: false,
+            cache: false,
+
+            success: (res) => {
+                var objectURL = window.webkitURL.createObjectURL(res);
+
+                $("#result_filecontent").attr({ "href": objectURL, "download": '轉檔結果.odt' });
+                $("#result_filecontent").css({ display: "block" });
+                $("#pop_message").html("轉檔成功，請確認轉檔結果 !");
+            },
+            error: (res) => {
+                console.log(res);
+            }
+        });
+    });
+</script>
+
+</html>

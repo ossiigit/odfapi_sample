@@ -64,6 +64,19 @@ def about():
 def table():
     return render_template('tbl2sc.html')
 
+#SA
+@app.route('/sa_preview')
+def sa_preview():
+    return render_template('SinglePage/preview.html')
+
+@app.route('/sa_converter')
+def sa_converter():
+    return render_template('SinglePage/converter.html')
+
+@app.route('/sa_mergeodf')
+def sa_mergeodf():
+    return render_template('SinglePage/mergeodf.html')
+
 @app.route('/tbl2sc', methods=["POST"])
 def tbl2sc():
     content = request.form['content']

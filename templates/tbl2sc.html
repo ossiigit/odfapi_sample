@@ -86,7 +86,7 @@ HTML table 2 spreadsheet
     // 網頁直接下載
     $("#dir-tbl2sc").on("click", function tbl2sc() {
         var tableStr = document.getElementsByTagName("table")[0].outerHTML;
-        url = "http://192.168.3.11:8080/lool/table2spreadsheet"
+        url = "http://192.168.3.11:9980/lool/table2spreadsheet"
         formData=""
         jsonData = {
             "title":"Hello",
@@ -106,7 +106,7 @@ HTML table 2 spreadsheet
                 'Content-Type': 'application/x-www-form-urlencoded'
             })
         }).then(function(response){
-            return response.blob()
+            return response.arrayBuffer()
         }).then(function deal(myBlob) {
 
             var objectURL = window.webkitURL.createObjectURL(myBlob);
